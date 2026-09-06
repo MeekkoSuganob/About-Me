@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'config.php';
 
 // If nobody is logged in, send them to the login page instead
 if (!isset($_SESSION['username'])) {
@@ -12,6 +13,23 @@ if (isset($_GET['logout'])) {
     header("Location: home.php");
     exit();
 }
+
+// Handle account deletion
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_account'])) {
+    $userId = $_SESSION['user_id'];
+
+    $deleteStmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+    $deleteStmt->bind_param("i", $userId);
+    $deleteStmt->execute();
+    $deleteStmt->close();
+    $conn->close();
+
+    session_destroy();
+    header("Location: home.php?deleted=1");
+    exit();
+}
+
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -59,13 +77,22 @@ if (isset($_GET['logout'])) {
     </h1>
 
     <p class="font-consolas text-[18px] text-brand-dark mb-10">
-      You are gay LoL.
+      This is your account page. Add subscription details, device management, or account settings here.
     </p>
 
-    <a href="account.php?logout=1"
-      class="font-consolas text-[20px] text-brand-light bg-brand-mid rounded-full py-3 px-10 transition-colors duration-300 hover:bg-brand-dark inline-block">
-      Log Out
-    </a>
+    <div class="flex justify-center gap-6">
+      <a href="account.php?logout=1"
+        class="font-consolas text-[20px] text-brand-light bg-brand-mid rounded-full py-3 px-10 transition-colors duration-300 hover:bg-brand-dark inline-block">
+        Log Out
+      </a>
+
+      <form action="account.php" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
+        <button type="submit" name="delete_account"
+          class="font-consolas text-[20px] text-brand-light bg-red-600 rounded-full py-3 px-10 transition-colors duration-300 hover:bg-red-800">
+          Delete Account
+        </button>
+      </form>
+    </div>
 
   </div>
 

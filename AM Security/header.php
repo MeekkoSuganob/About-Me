@@ -21,6 +21,14 @@ function navLinkClass($page, $activePage, $offset = 4) {
     }
     return 'hover:text-brand-dark transition-colors duration-300';
 }
+
+// name shortened to 8 letters
+function truncateUsername($name, $limit = 8) {
+    if (mb_strlen($name) > $limit) {
+        return mb_substr($name, 0, $limit) . '...';
+    }
+    return $name;
+}
 ?>
 <header class="bg-brand-light">
   <div class="mx-[130px] flex justify-between items-center py-6">
@@ -42,7 +50,7 @@ function navLinkClass($page, $activePage, $offset = 4) {
 
       <?php if (isset($_SESSION['username'])): ?>
         <a href="account.php" class="<?php echo navLinkClass('account', $activePage); ?>">
-          <?php echo htmlspecialchars($_SESSION['username']); ?>
+          <?php echo htmlspecialchars(truncateUsername($_SESSION['username'])); ?>
         </a>
       <?php else: ?>
         <a href="login.php" class="<?php echo navLinkClass('login', $activePage, 8); ?>">Login</a>

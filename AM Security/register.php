@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include 'config.php';
 
 $error = "";
 $success = "";
