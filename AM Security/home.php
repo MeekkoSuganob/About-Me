@@ -1,8 +1,8 @@
 <?php
 session_start();
 ?>
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!DOCTYPE php>
+<php lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -257,9 +257,9 @@ session_start();
     <div class="flex flex-col items-center text-center">
       <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
       <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="services.html" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
-        <li><a href="services.html" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
-        <li><a href="services.html" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
+        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
+        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
+        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
       </ul>
     </div>
 
@@ -267,10 +267,10 @@ session_start();
     <div class="flex flex-col items-center text-center">
       <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Partners</h3>
       <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="partners.html" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
-        <li><a href="partners.html" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
-        <li><a href="partners.html" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
-        <li><a href="partners.html" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
+        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
+        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
+        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
+        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
       </ul>
     </div>
 
@@ -293,4 +293,4 @@ session_start();
 </footer>
 
 </body>
-</html>
+</php>
