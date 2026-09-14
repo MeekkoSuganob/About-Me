@@ -2,11 +2,11 @@
 $activePage = 'aboutus';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AM Security</title>
+  <title>AM Security - About Us</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,11 +22,13 @@ $activePage = 'aboutus';
               light: '#fdfbd4',
               mid: '#6d8196',
               dark: '#1d2545',
+              custom: '#eeb91d',
             }
           },
           fontFamily: {
             eras: ['"Jost"', 'sans-serif'],
             consolas: ['Consolas', 'monospace'],
+            impact: ['Impact', 'sans-serif'],
           }
         }
       }
@@ -37,55 +39,154 @@ $activePage = 'aboutus';
 
   <?php include 'header.php'; ?>
 
-  <!-- Placeholder Content -->
-  <section class="bg-brand-dark flex items-center justify-center py-48">
-    <p class="font-eras text-[35px] text-brand-light text-center">
-      This section is currently being worked on.
-    </p>
+  <!-- Hero Section -->
+  <section class="bg-brand-dark py-24">
+    <div class="mx-[130px] text-center">
+      <h1 class="font-eras text-[65px] text-brand-light font-black leading-tight mb-6">
+        About AM Security
+      </h1>
+      <p class="font-consolas text-[22px] text-brand-light/80 leading-relaxed max-w-3xl mx-auto">
+        Founded in 2025, AM Security exists to make world-class digital protection simple, affordable, and genuinely trustworthy.
+      </p>
+    </div>
   </section>
 
-  <!-- Footer -->
-<footer class="bg-brand-light pt-10 pb-6">
-  <div class="mx-[130px] flex justify-center gap-20 mb-8">
+  <!-- Founder Story Section -->
+  <section id="founder" class="bg-brand-light py-24">
+    <div class="mx-[130px] grid grid-cols-12 gap-16 items-center">
 
-    <!-- Services Column -->
-      <div class="flex flex-col items-center text-center">
-        <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
-        <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-          <li><a href="services.php#consumer-section" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
-          <li><a href="services.php#business-section" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
-          <li><a href="services.php#enterprise-section" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
-        </ul>
+      <!-- Text -->
+      <div class="col-span-7 flex flex-col items-start">
+        <h2 class="font-eras text-[50px] text-brand-mid font-black leading-tight mb-8">
+          Meet the Founder
+        </h2>
+
+        <p class="font-consolas text-[20px] text-brand-mid leading-relaxed mb-6">
+          Alcher Meekko Suganob is a graduate of Negros Oriental State University, where he earned his degree in Cybersecurity and Information Assurance.
+        </p>
+
+        <p class="font-consolas text-[20px] text-brand-mid leading-relaxed mb-6">
+          AM Security was born from a simple goal: build protection that is truly secure and genuinely private but sharp enough to catch even the sneakiest viruses before they ever become a problem.
+        </p>
+
+        <div class="font-consolas text-[16px] text-brand-mid mb-10">
+          <p>Alcher Meekko Suganob</p>
+          <p>Founder and CEO</p>
+        </div>
+
+        <a href="home.php#downloads" class="font-consolas text-[20px] px-8 py-3 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light inline-block">
+          Download now
+        </a>
       </div>
 
-    <!-- Partners Column -->
-    <div class="flex flex-col items-center text-center">
-      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Partners</h3>
-      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="partners.php#partner-programs" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
-        <li><a href="partners.php#service-providers" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
-        <li><a href="partners.php#strategic-technology" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
-        <li><a href="partners.php#become-a-partner" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
-      </ul>
+      <!-- Photo -->
+      <div class="col-span-5 flex justify-end">
+        <img src="pictures/Personal photo.jpg" alt="Alcher Meekko Suganob, Founder of AM Security" class="w-full max-w-[450px] h-auto object-cover shadow-lg rounded-sm">
+      </div>
+
     </div>
+  </section>
 
-    <!-- Support Column -->
-    <div class="flex flex-col items-center text-center">
-      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Support</h3>
-      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">+63 0905-153-5155</a></li>
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">AMSecurity@gmail.com</a></li>
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">FAQs</a></li>
-      </ul>
+  <!-- Mission and Values Section -->
+  <section class="bg-brand-mid py-24">
+    <div class="mx-[130px]">
+
+      <h2 class="font-eras text-[50px] text-brand-dark font-black mb-6">
+        Our Mission
+      </h2>
+      <p class="font-consolas text-[22px] text-brand-dark leading-relaxed max-w-3xl mb-16">
+        To give consumers and businesses world-class cybersecurity and antivirus protection at a price that doesn't compromise on quality, privacy, or trust.
+      </p>
+
+      <div class="grid grid-cols-3 gap-8">
+
+        <div class="bg-brand-light/20 rounded-xl p-8">
+          <h3 class="font-eras text-[24px] text-brand-dark font-black mb-3">Uncompromising Security</h3>
+          <p class="font-consolas text-[15px] text-brand-dark leading-relaxed">
+            Built to catch threats others miss, from everyday malware to the sneakiest, most evasive viruses.
+          </p>
+        </div>
+
+        <div class="bg-brand-light/20 rounded-xl p-8">
+          <h3 class="font-eras text-[24px] text-brand-dark font-black mb-3">Genuine Privacy</h3>
+          <p class="font-consolas text-[15px] text-brand-dark leading-relaxed">
+            Your data stays yours. We design for privacy first, not as an afterthought.
+          </p>
+        </div>
+
+        <div class="bg-brand-light/20 rounded-xl p-8">
+          <h3 class="font-eras text-[24px] text-brand-dark font-black mb-3">Fair Pricing</h3>
+          <p class="font-consolas text-[15px] text-brand-dark leading-relaxed">
+            Top-tier protection shouldn't be a luxury. We keep it accessible for individuals and businesses alike.
+          </p>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-  </div>
+  <!-- Team Section -->
+  <section class="bg-brand-light py-24">
+    <div class="mx-[130px]">
 
-  <!-- Copyright -->
-  <div class="mx-[130px]">
-    <p class="font-consolas text-[16px] text-brand-mid">@ 2026 AM Security</p>
-  </div>
-</footer>
+      <h2 class="font-eras text-[50px] text-brand-mid font-black mb-6">
+        Our Team
+      </h2>
+      <p class="font-consolas text-[20px] text-brand-mid/80 leading-relaxed max-w-3xl mb-16">
+        Behind AM Security is a growing team dedicated to keeping your devices and data safe.
+      </p>
 
+      <div class="grid grid-cols-3 gap-8">
+
+        <div class="bg-brand-dark border border-brand-light/20 rounded-xl p-8">
+          <h3 class="font-eras text-[22px] text-brand-light font-black mb-3">Software Engineers</h3>
+          <p class="font-consolas text-[14px] text-brand-light leading-relaxed">
+            Building and maintaining the engine that powers real-time protection across every platform.
+          </p>
+        </div>
+
+        <div class="bg-brand-dark border border-brand-light/20 rounded-xl p-8">
+          <h3 class="font-eras text-[22px] text-brand-light font-black mb-3">Cybersecurity Analysts</h3>
+          <p class="font-consolas text-[14px] text-brand-light leading-relaxed">
+            Tracking emerging threats and making sure our detection stays a step ahead.
+          </p>
+        </div>
+
+        <div class="bg-brand-dark border border-brand-light/20 rounded-xl p-8">
+          <h3 class="font-eras text-[22px] text-brand-light font-black mb-3">Tech Experts</h3>
+          <p class="font-consolas text-[14px] text-brand-light leading-relaxed">
+            Supporting customers and partners with the technical know-how to keep things running smoothly.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Partner -->
+  <section class="bg-brand-dark py-24">
+    <div class="mx-[130px] flex flex-col items-center text-center">
+
+      <h2 class="font-eras text-[40px] text-brand-light font-black mb-10">
+        Featured Partner
+      </h2>
+
+      <img src="pictures/TP Studio logo.jpg" alt="TP Studio Logo" class="w-28 h-28 object-contain mb-6">
+
+      <h3 class="font-impact text-[26px] text-brand-custom/95 font-black mb-2">
+        TrashPanda Studio
+      </h3>
+      <p class="font-consolas text-[16px] text-brand-light max-w-xl mb-8">
+        A creative photography studio and proud partner of AM Security.
+      </p>
+
+      <a href="partners.php" class="font-consolas text-[18px] text-brand-mid bg-brand-light rounded-xl py-3 px-10 inline-block transition-colors duration-300 hover:bg-brand-mid hover:text-brand-dark">
+        See Our Partners
+      </a>
+
+    </div>
+  </section>
+
+  <?php include 'footer.php'; ?>
 </body>
 </html>

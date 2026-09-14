@@ -26,8 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_account'])) {
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         die("Invalid request. Please go back and try again.");
     }
-
+    // delete order THEN delete account
     $userId = $_SESSION['user_id'];
+    $deleteOrdersStmt = $conn->prepare("DELETE FROM orders WHERE user_id = ?");
+    $deleteOrdersStmt->bind_param("i", $userId);
+    $deleteOrdersStmt->execute();
+    $deleteOrdersStmt->close();
 
     $deleteStmt = $conn->prepare("DELETE FROM users WHERE id = ?");
     $deleteStmt->bind_param("i", $userId);
@@ -40,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_account'])) {
     exit();
 }
 
-// ── Fetch this user's email ─────────────────────────────────────────────
+// fetch email
 $userId = $_SESSION['user_id'];
 $userStmt = $conn->prepare("SELECT email FROM users WHERE id = ?");
 $userStmt->bind_param("i", $userId);
@@ -50,7 +54,7 @@ $userRow = $userResult->fetch_assoc();
 $userEmail = $userRow['email'] ?? '';
 $userStmt->close();
 
-// ── Fetch this user's transaction history ───────────────────────────────
+// Fetch transaction history
 $ordersStmt = $conn->prepare("SELECT plan_name, plan_section, price_paid, created_at FROM orders WHERE user_id = ? ORDER BY created_at DESC");
 $ordersStmt->bind_param("i", $userId);
 $ordersStmt->execute();
@@ -170,5 +174,6 @@ $activePage = 'account';
     </div>
   </section>
 
+  <?php include 'footer.php'; ?>
 </body>
 </html>

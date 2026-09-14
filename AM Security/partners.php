@@ -152,54 +152,12 @@ $activePage = 'partners';
         Interested in any of the paths above? Reach out and our partnerships team will help you find the right fit.
       </p>
       <a href="#"
-        class="font-consolas text-[20px] text-brand-dark bg-brand-light rounded-full py-4 px-12 inline-block transition-colors duration-300 hover:bg-brand-mid hover:text-brand-light">
+        class="font-consolas text-[20px] text-brand-dark bg-brand-light rounded-xl py-4 px-12 inline-block transition-colors duration-300 hover:bg-brand-mid hover:text-brand-light">
         Get in Touch
       </a>
     </div>
   </section>
 
-  <!-- Footer -->
-<footer class="bg-brand-light pt-10 pb-6">
-  <div class="mx-[130px] flex justify-center gap-20 mb-8">
-
-    <!-- Services Column -->
-      <div class="flex flex-col items-center text-center">
-        <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
-        <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-          <li><a href="services.php#consumer-section" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
-          <li><a href="services.php#business-section" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
-          <li><a href="services.php#enterprise-section" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
-        </ul>
-      </div>
-
-    <!-- Partners Column -->
-    <div class="flex flex-col items-center text-center">
-      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Partners</h3>
-      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="partners.php#partner-programs" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
-        <li><a href="partners.php#service-providers" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
-        <li><a href="partners.php#strategic-technology" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
-        <li><a href="partners.php#become-a-partner" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
-      </ul>
-    </div>
-
-    <!-- Support Column -->
-    <div class="flex flex-col items-center text-center">
-      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Support</h3>
-      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">+63 0905-153-5155</a></li>
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">AMSecurity@gmail.com</a></li>
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">FAQs</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- Copyright -->
-  <div class="mx-[130px]">
-    <p class="font-consolas text-[16px] text-brand-mid">@ 2026 AM Security</p>
-  </div>
-</footer>
-
+  <?php include 'footer.php'; ?>
 </body>
 </html>

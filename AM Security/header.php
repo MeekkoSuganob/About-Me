@@ -4,9 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Pages should set these before including this file:
-//   $activePage   = 'home' | 'services' | 'partners' | 'aboutus'   (which nav link gets underlined)
-//   $downloadHref = where the header's Download button should go (defaults to blank.php)
 if (!isset($activePage)) {
     $activePage = '';
 }
@@ -35,7 +32,7 @@ function truncateUsername($name, $limit = 8) {
 
     <!-- Logo Area -->
     <div class="flex items-center relative">
-      <img src="skibidi toilet/logo.png" alt="AM Security Logo" class="w-[60px] h-[60px] object-contain">
+      <img src="pictures/logo.png" alt="AM Security Logo" class="w-[60px] h-[60px] object-contain">
       <a href="home.php" class="font-eras text-[50px] text-brand-mid tracking-wide ml-[15px]">
         AM Security
       </a>

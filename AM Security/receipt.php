@@ -13,9 +13,7 @@ $orderId = $_GET['order_id'] ?? '';
 $order = null;
 
 if ($orderId) {
-    // IMPORTANT: also check user_id matches the logged-in session.
-    // Without this, changing the order_id in the URL would let anyone
-    // view anyone else's order/receipt.
+    // check user_id matches the logged-in session.
     $stmt = $conn->prepare("SELECT * FROM orders WHERE id = ? AND user_id = ?");
     $stmt->bind_param("ii", $orderId, $_SESSION['user_id']);
     $stmt->execute();

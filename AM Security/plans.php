@@ -1,9 +1,6 @@
 <?php
-// ── Shared plan data ─────────────────────────────────────────────────────
-// This is the single source of truth for plan names, prices, and features.
-// services.php and checkout.php both include this file, so a price can
-// never be trusted from the browser -- checkout always looks it up here
-// by plan name instead of trusting anything submitted in a form.
+
+//Plan data
 
 $consumerPlans = [
     [
@@ -169,10 +166,7 @@ $enterprisePlans = [
 ];
 
 
-// Searches all three plan lists for a plan by exact name. Returns the plan
-// array (plus which section it belongs to) or null if no match is found.
-// This is what checkout.php uses to get the *real* price for an order,
-// instead of trusting a price sent from the browser.
+// do NOT trust the price
 function findPlanByName($name) {
     global $consumerPlans, $businessPlans, $enterprisePlans;
 

@@ -18,7 +18,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 $error = "";
 
-// ── Handle the actual purchase (POST) ───────────────────────────────────
+// POST the purchase
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Reject if the CSRF token is missing or doesn't match
@@ -26,8 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Invalid request. Please go back and try again.");
     }
 
-    // Look up the plan server-side by name -- the price is NEVER trusted
-    // from the form itself, only the plan name, which we then re-verify here.
     $planName = $_POST['plan_name'] ?? '';
     $plan = findPlanByName($planName);
 
@@ -53,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// ── Look up the plan for display (GET) ──────────────────────────────────
 $planName = $_GET['plan'] ?? '';
 $plan = findPlanByName($planName);
 
@@ -158,10 +155,6 @@ $conn->close();
           class="font-consolas text-[16px] text-brand-dark border-2 border-brand-dark rounded-full py-3 w-full mt-3 text-center block transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Back
         </a>
-
-        <p class="font-consolas text-[12px] text-brand-dark/50 text-center mt-6">
-          This is a simulated checkout for demonstration purposes -- no real payment is processed.
-        </p>
 
       </div>
 

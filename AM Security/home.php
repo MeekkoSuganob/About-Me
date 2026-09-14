@@ -40,7 +40,7 @@ session_start();
 <!-- Section number 1 -->
 <section class="bg-brand-dark relative py-32 overflow-hidden">
 
-  <img src="skibidi toilet/Section1.png" alt="" class="absolute inset-0 w-full h-full object-cover z-0">
+  <img src="pictures/Section1.png" alt="" class="absolute inset-0 w-full h-full object-cover z-0">
   <div class="absolute inset-0 bg-brand-dark/90 z-0"></div>
   <div class="mx-[130px] relative z-10 flex flex-col items-start w-3/5">
     
@@ -66,12 +66,12 @@ session_start();
 <section class="bg-brand-light py-24">
   <div class="mx-[130px] grid grid-cols-12 gap-12 items-center">
     
-    <!-- Left Column: Shield Logo Image (4 out of 12 columns) -->
+    <!-- Shield Logo -->
     <div class="col-span-4 flex justify-center">
-      <img src="skibidi toilet/logo.png" alt="AM Security Shield" class="w-[400px] h-auto object-contain">
+      <img src="pictures/logo.png" alt="AM Security Shield" class="w-[400px] h-auto object-contain">
     </div>
 
-    <!-- Right Column: Text & Button (8 out of 12 columns) -->
+    <!-- Text & Button -->
     <div class="col-span-8 flex flex-col items-start">
       
       <!-- Headline -->
@@ -174,7 +174,7 @@ session_start();
         The Mind behind your<br>digital shield
       </h2>
       
-      <!-- Quote Paragraph -->
+      <!-- Message -->
       <p class="font-consolas text-[30px] text-brand-mid leading-relaxed mb-10">
         “Hi, I'm the founder of AM Security. As<br>a developer passionate about tech<br>mechanics and software engineering, I<br>created this platform to bridge the gap<br>between everyday users and world-class<br>cybersecurity solutions”
       </p>
@@ -186,15 +186,15 @@ session_start();
       </div>
 
       <!-- Learn More Button -->
-      <a href="aboutus.php" class="font-consolas text-[30px] px-8 py-3 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light inline-block">
+      <a href="aboutus.php#founder" class="font-consolas text-[30px] px-8 py-3 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light inline-block">
         Learn More
       </a>
 
     </div>
 
-    <!-- Right Column: Profile Image (5 out of 12 columns) -->
+    <!-- Profile Image -->
     <div class="col-span-5 flex justify-end">
-      <img src="skibidi toilet/nawong sa negro.jpg" alt="Alcher Meekko Suganob, Founder of AM Security" class="w-full max-w-[450px] h-auto object-cover border-4 border-transparent shadow-lg rounded-sm">
+      <img src="pictures/Personal photo.jpg" alt="Alcher Meekko Suganob, Founder of AM Security" class="w-full max-w-[450px] h-auto object-cover border-4 border-transparent shadow-lg rounded-sm">
     </div>
 
   </div>
@@ -202,9 +202,6 @@ session_start();
 
 <!-- Section number 5 -->
 <section id="downloads" class="bg-brand-dark py-32 relative overflow-hidden">
-  <!-- <div class="absolute inset-y-0 left-0 w-[650px] overflow-hidden z-0">
-    <img src="skibidi toilet/Section 5.png" alt="" class="w-full h-full object-cover object-left -skew-x-6 scale-125">
-  </div> -->
 
   <div class="mx-[130px] flex justify-center items-center relative z-10">
     
@@ -215,14 +212,12 @@ session_start();
       <div class="bg-brand-light rounded-[35px] w-[380px] h-[480px] flex flex-col items-center justify-between py-14 px-8 shadow-2xl">
         
         <!-- Windows Icon  -->
-        <img src="skibidi toilet/bintana.png" alt="Windows" class="w-32 h-32 object-contain">
+        <img src="pictures/Windows logo.png" alt="Windows" class="w-32 h-32 object-contain">
         
-        <!-- Card Text -->
         <h3 class="font-consolas text-[30px] text-black text-center leading-snug">
           Download for<br>Windows
         </h3>
         
-        <!-- Download Button -->
         <a href="services.php" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Download
         </a>
@@ -232,14 +227,12 @@ session_start();
       <div class="bg-brand-light rounded-[35px] w-[380px] h-[480px] flex flex-col items-center justify-between py-14 px-8 shadow-2xl">
         
         <!-- macOS Icon -->
-        <img src="skibidi toilet/apple.png" alt="macOS" class="w-32 h-32 object-contain">
+        <img src="pictures/macOS logo.png" alt="macOS" class="w-32 h-32 object-contain">
         
-        <!-- Card Text -->
         <h3 class="font-consolas text-[30px] text-black text-center leading-snug">
           Download for<br>macOS
         </h3>
-        
-        <!-- Download Button -->
+
         <a href="services.php" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Download
         </a>
@@ -249,48 +242,6 @@ session_start();
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-brand-light pt-10 pb-6">
-  <div class="mx-[130px] flex justify-center gap-20 mb-8">
-
-    <!-- Services Column -->
-      <div class="flex flex-col items-center text-center">
-        <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
-        <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-          <li><a href="services.php#consumer-section" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
-          <li><a href="services.php#business-section" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
-          <li><a href="services.php#enterprise-section" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
-        </ul>
-      </div>
-
-    <!-- Partners Column -->
-    <div class="flex flex-col items-center text-center">
-      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Partners</h3>
-      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="partners.php#partner-programs" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
-        <li><a href="partners.php#service-providers" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
-        <li><a href="partners.php#strategic-technology" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
-        <li><a href="partners.php#become-a-partner" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
-      </ul>
-    </div>
-
-    <!-- Support Column -->
-    <div class="flex flex-col items-center text-center">
-      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Support</h3>
-      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">+63 0905-153-5155</a></li>
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">AMSecurity@gmail.com</a></li>
-        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">FAQs</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- Copyright -->
-  <div class="mx-[130px]">
-    <p class="font-consolas text-[16px] text-brand-mid">@ 2026 AM Security</p>
-  </div>
-</footer>
-
+<?php include 'footer.php'; ?>
 </body>
 </html>
