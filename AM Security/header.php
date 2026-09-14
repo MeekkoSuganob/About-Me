@@ -1,5 +1,5 @@
 <?php
-// Make sure the session is available even if the including page forgot to start it
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -11,7 +11,7 @@ if (!isset($activePage)) {
     $activePage = '';
 }
 if (!isset($downloadHref)) {
-    $downloadHref = 'blank.php';
+    $downloadHref = 'services.php';
 }
 
 // Returns the right classes for a nav link depending on whether it's the active page

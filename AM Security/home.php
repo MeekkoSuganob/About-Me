@@ -1,8 +1,8 @@
 <?php
 session_start();
 ?>
-<!DOCTYPE php>
-<php lang="en" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -223,7 +223,7 @@ session_start();
         </h3>
         
         <!-- Download Button -->
-        <a href="blank.php" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
+        <a href="services.php" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Download
         </a>
       </div>
@@ -240,7 +240,7 @@ session_start();
         </h3>
         
         <!-- Download Button -->
-        <a href="blank.php" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
+        <a href="services.php" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Download
         </a>
       </div>
@@ -254,23 +254,23 @@ session_start();
   <div class="mx-[130px] flex justify-center gap-20 mb-8">
 
     <!-- Services Column -->
-    <div class="flex flex-col items-center text-center">
-      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
-      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
-        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
-        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
-      </ul>
-    </div>
+      <div class="flex flex-col items-center text-center">
+        <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
+        <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
+          <li><a href="services.php#consumer-section" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
+          <li><a href="services.php#business-section" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
+          <li><a href="services.php#enterprise-section" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
+        </ul>
+      </div>
 
     <!-- Partners Column -->
     <div class="flex flex-col items-center text-center">
       <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Partners</h3>
       <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
-        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
-        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
-        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
+        <li><a href="partners.php#partner-programs" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
+        <li><a href="partners.php#service-providers" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
+        <li><a href="partners.php#strategic-technology" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
+        <li><a href="partners.php#become-a-partner" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
       </ul>
     </div>
 
@@ -293,4 +293,4 @@ session_start();
 </footer>
 
 </body>
-</php>
+</html>

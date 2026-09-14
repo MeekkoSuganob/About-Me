@@ -2,7 +2,7 @@
 $activePage = 'partners';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,11 +37,125 @@ $activePage = 'partners';
 
   <?php include 'header.php'; ?>
 
-  <!-- Placeholder Content -->
-  <section class="bg-brand-dark flex items-center justify-center py-48">
-    <p class="font-eras text-[35px] text-brand-light text-center">
-      This section is currently being worked on.
-    </p>
+  <!-- Intro Section -->
+  <section class="bg-brand-dark py-24">
+    <div class="mx-[130px]">
+      <h1 class="font-eras text-[60px] text-brand-light font-black leading-tight mb-6">
+        Partner With AM Security
+      </h1>
+      <p class="font-consolas text-[22px] text-brand-light/80 leading-relaxed max-w-3xl">
+        Whether you're reselling, integrating, or managing security for your own clients, we have a partnership path built for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Partner Programs -->
+  <section id="partner-programs" class="bg-brand-light py-24">
+    <div class="mx-[130px]">
+      <h2 class="font-eras text-[50px] text-brand-mid font-black mb-6">
+        Partner Programs
+      </h2>
+      <p class="font-consolas text-[20px] text-brand-mid leading-relaxed mb-12 max-w-3xl">
+        Our tiered program rewards partners as they grow with us — the more you sell, the more support and margin you unlock.
+      </p>
+
+      <div class="grid grid-cols-4 gap-6">
+        <div class="bg-brand-mid/10 rounded-xl p-6">
+          <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">Authorized</h3>
+          <p class="font-consolas text-[14px] text-brand-dark leading-relaxed">
+            Entry-level access to our reseller pricing and sales resources.
+          </p>
+        </div>
+        <div class="bg-brand-mid/10 rounded-xl p-6">
+          <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">Silver</h3>
+          <p class="font-consolas text-[14px] text-brand-dark leading-relaxed">
+            Deal registration and priority technical support.
+          </p>
+        </div>
+        <div class="bg-brand-mid/10 rounded-xl p-6">
+          <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">Gold</h3>
+          <p class="font-consolas text-[14px] text-brand-dark leading-relaxed">
+            Co-marketing funds and dedicated partner manager.
+          </p>
+        </div>
+        <div class="bg-brand-mid/10 rounded-xl p-6">
+          <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">Platinum</h3>
+          <p class="font-consolas text-[14px] text-brand-dark leading-relaxed">
+            Top-tier margins, joint go-to-market planning, and executive support.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Providers -->
+  <section id="service-providers" class="bg-brand-mid py-24">
+    <div class="mx-[130px]">
+      <h2 class="font-eras text-[50px] text-brand-dark font-black mb-6">
+        Service Providers
+      </h2>
+      <p class="font-consolas text-[20px] text-brand-dark leading-relaxed mb-10 max-w-3xl">
+        Built for MSPs and MSSPs who need to manage security across many client accounts without the overhead.
+      </p>
+
+      <ul class="font-consolas text-[18px] text-brand-dark space-y-6">
+        <li class="flex items-start gap-4">
+          <div class="w-4 h-4 rounded-full bg-brand-light mt-1.5 flex-shrink-0"></div>
+          <span><span class="font-bold">Multi-tenant dashboard</span> — manage every client account from a single console.</span>
+        </li>
+        <li class="flex items-start gap-4">
+          <div class="w-4 h-4 rounded-full bg-brand-light mt-1.5 flex-shrink-0"></div>
+          <span><span class="font-bold">Usage-based billing</span> — pay monthly per active device instead of upfront licensing.</span>
+        </li>
+        <li class="flex items-start gap-4">
+          <div class="w-4 h-4 rounded-full bg-brand-light mt-1.5 flex-shrink-0"></div>
+          <span><span class="font-bold">White-label options</span> — offer protection under your own brand.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Strategic Technology -->
+  <section id="strategic-technology" class="bg-brand-light py-24">
+    <div class="mx-[130px]">
+      <h2 class="font-eras text-[50px] text-brand-mid font-black mb-6">
+        Strategic Technology
+      </h2>
+      <p class="font-consolas text-[20px] text-brand-mid leading-relaxed mb-10 max-w-3xl">
+        For software and hardware vendors looking to integrate real-time threat detection into their own products.
+      </p>
+
+      <ul class="font-consolas text-[18px] text-brand-dark space-y-6">
+        <li class="flex items-start gap-4">
+          <div class="w-4 h-4 rounded-full bg-brand-mid mt-1.5 flex-shrink-0"></div>
+          <span><span class="font-bold">API & SDK access</span> — build our detection engine directly into your platform.</span>
+        </li>
+        <li class="flex items-start gap-4">
+          <div class="w-4 h-4 rounded-full bg-brand-mid mt-1.5 flex-shrink-0"></div>
+          <span><span class="font-bold">Pre-built integrations</span> — connect with popular SIEM tools, firewalls, and cloud platforms.</span>
+        </li>
+        <li class="flex items-start gap-4">
+          <div class="w-4 h-4 rounded-full bg-brand-mid mt-1.5 flex-shrink-0"></div>
+          <span><span class="font-bold">Joint solution briefs</span> — co-sell to shared customers with a unified story.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Become a Partner -->
+  <section id="become-a-partner" class="bg-brand-dark py-24">
+    <div class="mx-[130px] text-center">
+      <h2 class="font-eras text-[50px] text-brand-light font-black mb-6">
+        Become a Partner
+      </h2>
+      <p class="font-consolas text-[20px] text-brand-light/80 leading-relaxed mb-10 max-w-2xl mx-auto">
+        Interested in any of the paths above? Reach out and our partnerships team will help you find the right fit.
+      </p>
+      <a href="#"
+        class="font-consolas text-[20px] text-brand-dark bg-brand-light rounded-full py-4 px-12 inline-block transition-colors duration-300 hover:bg-brand-mid hover:text-brand-light">
+        Get in Touch
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -49,23 +163,23 @@ $activePage = 'partners';
   <div class="mx-[130px] flex justify-center gap-20 mb-8">
 
     <!-- Services Column -->
-    <div class="flex flex-col items-center text-center">
-      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
-      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
-        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
-        <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
-      </ul>
-    </div>
+      <div class="flex flex-col items-center text-center">
+        <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
+        <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
+          <li><a href="services.php#consumer-section" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
+          <li><a href="services.php#business-section" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
+          <li><a href="services.php#enterprise-section" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
+        </ul>
+      </div>
 
     <!-- Partners Column -->
     <div class="flex flex-col items-center text-center">
       <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Partners</h3>
       <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
-        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
-        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
-        <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
+        <li><a href="partners.php#partner-programs" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
+        <li><a href="partners.php#service-providers" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
+        <li><a href="partners.php#strategic-technology" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
+        <li><a href="partners.php#become-a-partner" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
       </ul>
     </div>
 
@@ -73,8 +187,8 @@ $activePage = 'partners';
     <div class="flex flex-col items-center text-center">
       <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Support</h3>
       <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-        <li><a href="tel:+639051535155" class="hover:text-brand-dark transition-colors duration-300">+63 0905-153-5155</a></li>
-        <li><a href="mailto:AMSecurity@gmail.com" class="hover:text-brand-dark transition-colors duration-300">AMSecurity@gmail.com</a></li>
+        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">+63 0905-153-5155</a></li>
+        <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">AMSecurity@gmail.com</a></li>
         <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">FAQs</a></li>
       </ul>
     </div>
