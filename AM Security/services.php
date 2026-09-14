@@ -48,10 +48,6 @@ function renderPricingCard($plan) {
             Buy Now
         </a>
 
-        <a href="#" class="font-consolas text-[16px] text-brand-dark border-2 border-brand-dark rounded-xl py-3 text-center mb-6 transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
-            Find Out More
-        </a>
-
         <p class="font-consolas text-[11px] text-brand-dark/50 mb-6">
             30 days money back guarantee.
         </p>
@@ -80,7 +76,7 @@ function renderPricingCard($plan) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -116,7 +112,7 @@ function renderPricingCard($plan) {
   <?php include 'header.php'; ?>
 
   <!-- Consumer Section -->
-  <section class="bg-brand-dark py-24">
+  <section id="consumer-section" class="bg-brand-dark py-24">
     <div class="mx-[130px]">
       <h2 class="font-eras text-[50px] text-brand-light font-black mb-2">Consumer</h2>
       <p class="font-consolas text-[18px] text-brand-light/80 mb-12">
@@ -131,7 +127,7 @@ function renderPricingCard($plan) {
   </section>
 
   <!-- Business Section -->
-  <section class="bg-brand-mid py-24">
+  <section id="business-section" class="bg-brand-mid py-24">
     <div class="mx-[130px]">
       <h2 class="font-eras text-[50px] text-brand-dark font-black mb-2">Business</h2>
       <p class="font-consolas text-[18px] text-brand-dark/80 mb-12">
@@ -146,7 +142,7 @@ function renderPricingCard($plan) {
   </section>
 
   <!-- Enterprise Section -->
-  <section class="bg-brand-dark py-24">
+  <section id="enterprise-section" class="bg-brand-dark py-24">
     <div class="mx-[130px]">
       <h2 class="font-eras text-[50px] text-brand-light font-black mb-2">Enterprise</h2>
       <p class="font-consolas text-[18px] text-brand-light/80 mb-12">
@@ -168,29 +164,29 @@ function renderPricingCard($plan) {
       <div class="flex flex-col items-center text-center">
         <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Services</h3>
         <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-          <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
-          <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
-          <li><a href="services.php" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
+          <li><a href="services.php#consumer-section" class="hover:text-brand-dark transition-colors duration-300">Consumer</a></li>
+          <li><a href="services.php#business-section" class="hover:text-brand-dark transition-colors duration-300">Business</a></li>
+          <li><a href="services.php#enterprise-section" class="hover:text-brand-dark transition-colors duration-300">Enterprise</a></li>
         </ul>
       </div>
 
       <!-- Partners Column -->
-      <div class="flex flex-col items-center text-center">
-        <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Partners</h3>
-        <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-          <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
-          <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
-          <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
-          <li><a href="partners.php" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
-        </ul>
-      </div>
+    <div class="flex flex-col items-center text-center">
+      <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Partners</h3>
+      <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
+        <li><a href="partners.php#partner-programs" class="hover:text-brand-dark transition-colors duration-300">Partner Programs</a></li>
+        <li><a href="partners.php#service-providers" class="hover:text-brand-dark transition-colors duration-300">Service Providers</a></li>
+        <li><a href="partners.php#strategic-technology" class="hover:text-brand-dark transition-colors duration-300">Strategic Technology</a></li>
+        <li><a href="partners.php#become-a-partner" class="hover:text-brand-dark transition-colors duration-300">Become a Partner</a></li>
+      </ul>
+    </div>
 
       <!-- Support Column -->
       <div class="flex flex-col items-center text-center">
         <h3 class="font-eras text-[20px] text-brand-mid font-black mb-3">Support</h3>
         <ul class="font-consolas text-[14px] text-brand-mid space-y-1">
-          <li><a href="tel:+639051535155" class="hover:text-brand-dark transition-colors duration-300">+63 0905-153-5155</a></li>
-          <li><a href="mailto:AMSecurity@gmail.com" class="hover:text-brand-dark transition-colors duration-300">AMSecurity@gmail.com</a></li>
+          <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">+63 0905-153-5155</a></li>
+          <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">AMSecurity@gmail.com</a></li>
           <li><a href="#" class="hover:text-brand-dark transition-colors duration-300">FAQs</a></li>
         </ul>
       </div>
