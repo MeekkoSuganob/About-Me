@@ -86,9 +86,9 @@ $activePage = 'aboutus';
 
     </div>
   </section>
-
+ 
   <!-- Mission and Values Section -->
-  <section class="bg-brand-mid py-24">
+  <section id="mission" class="bg-brand-mid py-24">
     <div class="mx-[130px]">
 
       <h2 class="font-eras text-[50px] text-brand-dark font-black mb-6">

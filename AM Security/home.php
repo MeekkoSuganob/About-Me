@@ -85,7 +85,7 @@ session_start();
       </p>
 
       <div class="w-full flex justify-end">
-        <a href="aboutus.php" class="font-consolas text-[30px] px-8 py-3 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
+        <a href="aboutus.php#mission" class="font-consolas text-[30px] px-8 py-3 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Learn More
         </a>
       </div>

@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } elseif ($checkUsernameStmt->num_rows > 0) {
             $error = "That username is already taken.";
         } else {
-            // Hash the password before storing it
+            // Hash the password
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert new user using a prepared statement
