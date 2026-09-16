@@ -8,8 +8,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// Must specifically be an admin -- silently redirect non-admins to home,
-// don't reveal that an admin page even exists to regular users
+//only appears if admin
 if (empty($_SESSION['is_admin'])) {
     header("Location: home.php");
     exit();
@@ -17,11 +16,11 @@ if (empty($_SESSION['is_admin'])) {
 
 $activePage = 'admin';
 
-// ── Fetch every user ─────────────────────────────────────────────────────
+// Fetch user
 $usersResult = $conn->query("SELECT id, username, email, is_admin, created_at FROM users ORDER BY created_at DESC");
 $users = $usersResult->fetch_all(MYSQLI_ASSOC);
 
-// ── Fetch every order, joined with the username that placed it ──────────
+// Fetch order and user in order by date
 $ordersResult = $conn->query("
     SELECT orders.id, orders.plan_name, orders.plan_section, orders.price_paid, orders.created_at, users.username
     FROM orders
