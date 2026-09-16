@@ -45,6 +45,10 @@ function truncateUsername($name, $limit = 8) {
       <a href="partners.php" class="<?php echo navLinkClass('partners', $activePage); ?>">Partners</a>
       <a href="aboutus.php" class="<?php echo navLinkClass('aboutus', $activePage); ?>">About Us</a>
 
+      <?php if (!empty($_SESSION['is_admin'])): ?>
+        <a href="admin.php" class="<?php echo navLinkClass('admin', $activePage); ?>">Admin</a>
+      <?php endif; ?>
+
       <?php if (isset($_SESSION['username'])): ?>
         <a href="account.php" class="<?php echo navLinkClass('account', $activePage); ?>">
           <?php echo htmlspecialchars(truncateUsername($_SESSION['username'])); ?>

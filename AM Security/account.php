@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_account'])) {
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         die("Invalid request. Please go back and try again.");
     }
-    // delete order THEN delete account
+    // delete order THEN delete account on skibidi
     $userId = $_SESSION['user_id'];
     $deleteOrdersStmt = $conn->prepare("DELETE FROM orders WHERE user_id = ?");
     $deleteOrdersStmt->bind_param("i", $userId);
