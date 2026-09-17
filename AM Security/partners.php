@@ -1,5 +1,23 @@
 <?php
+session_start();
+include 'config.php';
+
 $activePage = 'partners';
+include 'partner_tiers.php';
+
+$currentPartnerTier = null;
+if (isset($_SESSION['username'])) {
+    $userId = $_SESSION['user_id'];
+    $partnerStmt = $conn->prepare("SELECT tier FROM partners WHERE user_id = ?");
+    $partnerStmt->bind_param("i", $userId);
+    $partnerStmt->execute();
+    $partnerResult = $partnerStmt->get_result();
+    $currentPartnerRow = $partnerResult->fetch_assoc();
+    $partnerStmt->close();
+    $currentPartnerTier = $currentPartnerRow['tier'] ?? null;
+}
+
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -56,34 +74,38 @@ $activePage = 'partners';
         Partner Programs
       </h2>
       <p class="font-consolas text-[20px] text-brand-mid leading-relaxed mb-12 max-w-3xl">
-        Our tiered program rewards partners as they grow with us — the more you sell, the more support and margin you unlock.
+        Our tiered program rewards partners as they grow with us — the more you sell, the more support and margin you unlock. Joining is a one-time payment; Authorized tier is free. You can switch tiers at any time.
       </p>
 
       <div class="grid grid-cols-4 gap-6">
-        <div class="bg-brand-mid/10 rounded-xl p-6">
-          <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">Authorized</h3>
-          <p class="font-consolas text-[14px] text-brand-dark leading-relaxed">
-            Entry-level access to our reseller pricing and sales resources.
-          </p>
-        </div>
-        <div class="bg-brand-mid/10 rounded-xl p-6">
-          <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">Silver</h3>
-          <p class="font-consolas text-[14px] text-brand-dark leading-relaxed">
-            Deal registration and priority technical support.
-          </p>
-        </div>
-        <div class="bg-brand-mid/10 rounded-xl p-6">
-          <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">Gold</h3>
-          <p class="font-consolas text-[14px] text-brand-dark leading-relaxed">
-            Co-marketing funds and dedicated partner manager.
-          </p>
-        </div>
-        <div class="bg-brand-mid/10 rounded-xl p-6">
-          <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">Platinum</h3>
-          <p class="font-consolas text-[14px] text-brand-dark leading-relaxed">
-            Top-tier margins, joint go-to-market planning, and executive support.
-          </p>
-        </div>
+        <?php foreach ($partnerTiers as $tier): ?>
+          <?php $isCurrent = $currentPartnerTier === $tier['name']; ?>
+          <div class="bg-brand-mid/10 rounded-xl p-6 flex flex-col <?php echo $isCurrent ? 'ring-2 ring-brand-mid' : ''; ?>">
+            <h3 class="font-eras text-[22px] text-brand-mid font-black mb-2">
+              <?php echo htmlspecialchars($tier['name']); ?>
+              <?php if ($isCurrent): ?>
+                <span class="font-consolas text-[11px] text-brand-dark/60 font-normal align-middle">(Current)</span>
+              <?php endif; ?>
+            </h3>
+            <p class="font-consolas text-[14px] text-brand-dark leading-relaxed mb-4 flex-grow">
+              <?php echo htmlspecialchars($tier['description']); ?>
+            </p>
+            <p class="font-eras text-[22px] text-brand-dark font-black mb-4">
+              <?php echo $tier['price'] === '0' ? 'Free' : '₱' . htmlspecialchars($tier['price']); ?>
+            </p>
+
+            <?php if ($isCurrent): ?>
+              <span class="font-consolas text-[14px] text-brand-mid font-bold border-2 border-brand-mid rounded-lg py-2 text-center">
+                Current Plan
+              </span>
+            <?php else: ?>
+              <a href="partner_reg.php?tier=<?php echo urlencode($tier['name']); ?>"
+                class="font-consolas text-[14px] text-brand-light bg-brand-mid rounded-lg py-2 text-center transition-colors duration-300 hover:bg-brand-dark">
+                <?php echo $currentPartnerTier ? 'Switch to ' . htmlspecialchars($tier['name']) : 'Select ' . htmlspecialchars($tier['name']); ?>
+              </a>
+            <?php endif; ?>
+          </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
@@ -149,9 +171,9 @@ $activePage = 'partners';
         Become a Partner
       </h2>
       <p class="font-consolas text-[20px] text-brand-light/80 leading-relaxed mb-10 max-w-2xl mx-auto">
-        Interested in any of the paths above? Reach out and our partnerships team will help you find the right fit.
+        Interested in any of the paths above? Choose your tier and get started today.
       </p>
-      <a href="#"
+      <a href="partner_reg.php"
         class="font-consolas text-[20px] text-brand-dark bg-brand-light rounded-xl py-4 px-12 inline-block transition-colors duration-300 hover:bg-brand-mid hover:text-brand-light">
         Get in Touch
       </a>

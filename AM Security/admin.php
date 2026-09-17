@@ -29,15 +29,33 @@ $ordersResult = $conn->query("
 ");
 $orders = $ordersResult->fetch_all(MYSQLI_ASSOC);
 
+// ── Fetch every subscription, joined with the username that holds it ────
+$subsResult = $conn->query("
+    SELECT subscriptions.plan_name, subscriptions.plan_section, subscriptions.purchased_at, subscriptions.expires_at, users.username
+    FROM subscriptions
+    JOIN users ON subscriptions.user_id = users.id
+    ORDER BY subscriptions.expires_at ASC
+");
+$subscriptions = $subsResult->fetch_all(MYSQLI_ASSOC);
+
+// Fetch partners and user in order by date
+$partnersResult = $conn->query("
+    SELECT partners.tier, partners.price_paid, partners.created_at, users.username
+    FROM partners
+    JOIN users ON partners.user_id = users.id
+    ORDER BY partners.created_at DESC
+");
+$partners = $partnersResult->fetch_all(MYSQLI_ASSOC);
+
 $conn->close();
 
 // ── Compute summary stats ────────────────────────────────────────────────
 $totalUsers = count($users);
 $totalOrders = count($orders);
+$totalPartners = count($partners);
 
 $totalRevenue = 0;
 foreach ($orders as $order) {
-    // price_paid is stored like "1,499" -- strip the comma before summing
     $totalRevenue += (float) str_replace(',', '', $order['price_paid']);
 }
 ?>
@@ -85,7 +103,7 @@ foreach ($orders as $order) {
         Admin Dashboard
       </h1>
 
-      <div class="grid grid-cols-3 gap-6">
+      <div class="grid grid-cols-4 gap-6">
         <div class="bg-brand-light rounded-xl p-8">
           <p class="font-consolas text-[13px] text-brand-dark/60 mb-2">Total Users</p>
           <p class="font-eras text-[36px] text-brand-mid font-black"><?php echo $totalUsers; ?></p>
@@ -93,6 +111,10 @@ foreach ($orders as $order) {
         <div class="bg-brand-light rounded-xl p-8">
           <p class="font-consolas text-[13px] text-brand-dark/60 mb-2">Total Orders</p>
           <p class="font-eras text-[36px] text-brand-mid font-black"><?php echo $totalOrders; ?></p>
+        </div>
+        <div class="bg-brand-light rounded-xl p-8">
+          <p class="font-consolas text-[13px] text-brand-dark/60 mb-2">Total Partners</p>
+          <p class="font-eras text-[36px] text-brand-mid font-black"><?php echo $totalPartners; ?></p>
         </div>
         <div class="bg-brand-light rounded-xl p-8">
           <p class="font-consolas text-[13px] text-brand-dark/60 mb-2">Total Revenue</p>
@@ -173,6 +195,82 @@ foreach ($orders as $order) {
                   <td class="py-3"><?php echo htmlspecialchars($order['plan_section']); ?></td>
                   <td class="py-3">₱<?php echo htmlspecialchars($order['price_paid']); ?></td>
                   <td class="py-3"><?php echo htmlspecialchars($order['created_at']); ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      <?php endif; ?>
+    </div>
+  </section>
+
+  <!-- Subscriptions Table -->
+  <section class="bg-brand-light py-20">
+    <div class="mx-[130px]">
+      <h2 class="font-eras text-[36px] text-brand-mid font-black mb-8">
+        Subscriptions
+      </h2>
+ 
+      <?php if (empty($subscriptions)): ?>
+        <p class="font-consolas text-[16px] text-brand-dark/60">No subscriptions yet.</p>
+      <?php else: ?>
+        <div class="overflow-x-auto">
+          <table class="w-full font-consolas text-brand-dark text-[15px]">
+            <thead>
+              <tr class="border-b-2 border-brand-dark/30 text-left">
+                <th class="pb-3 font-bold">Username</th>
+                <th class="pb-3 font-bold">Plan</th>
+                <th class="pb-3 font-bold">Purchased</th>
+                <th class="pb-3 font-bold">Expires</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($subscriptions as $sub): ?>
+                <?php $isExpired = strtotime($sub['expires_at']) < time(); ?>
+                <tr class="border-b border-brand-dark/10">
+                  <td class="py-3"><?php echo htmlspecialchars($sub['username']); ?></td>
+                  <td class="py-3"><?php echo htmlspecialchars($sub['plan_name']); ?></td>
+                  <td class="py-3"><?php echo htmlspecialchars($sub['purchased_at']); ?></td>
+                  <td class="py-3">
+                    <?php echo htmlspecialchars($sub['expires_at']); ?>
+                    <?php if ($isExpired): ?>
+                      <span class="font-bold text-red-600 ml-2">Expired</span>
+                    <?php endif; ?>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      <?php endif; ?>
+    </div>
+  </section>
+
+  <!-- Partners Table -->
+  <section class="bg-brand-dark py-20">
+    <div class="mx-[130px]">
+      <h2 class="font-eras text-[36px] text-brand-light font-black mb-8">
+        Partners
+      </h2>
+
+      <?php if (empty($partners)): ?>
+        <p class="font-consolas text-[16px] text-brand-light/60">No partners yet.</p>
+      <?php else: ?>
+        <div class="overflow-x-auto">
+          <table class="w-full font-consolas text-brand-light text-[15px]">
+            <thead>
+              <tr class="border-b-2 border-brand-light/30 text-left">
+                <th class="pb-3 font-bold">Username</th>
+                <th class="pb-3 font-bold">Tier</th>
+                <th class="pb-3 font-bold">Partner Since</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($partners as $partner): ?>
+                <tr class="border-b border-brand-light/10">
+                  <td class="py-3"><?php echo htmlspecialchars($partner['username']); ?></td>
+                  <td class="py-3"><?php echo htmlspecialchars($partner['tier']); ?></td>
+                  <td class="py-3"><?php echo htmlspecialchars($partner['created_at']); ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

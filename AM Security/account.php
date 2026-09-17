@@ -33,6 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_account'])) {
     $deleteOrdersStmt->execute();
     $deleteOrdersStmt->close();
 
+    $deletePartnerStmt = $conn->prepare("DELETE FROM partners WHERE user_id = ?");
+    $deletePartnerStmt->bind_param("i", $userId);
+    $deletePartnerStmt->execute();
+    $deletePartnerStmt->close();
+
     $deleteStmt = $conn->prepare("DELETE FROM users WHERE id = ?");
     $deleteStmt->bind_param("i", $userId);
     $deleteStmt->execute();
@@ -62,9 +67,18 @@ $ordersResult = $ordersStmt->get_result();
 $orders = $ordersResult->fetch_all(MYSQLI_ASSOC);
 $ordersStmt->close();
 
+// Fetch partnership tier, if any (one-time purchase, so at most one row)
+$partnerStmt = $conn->prepare("SELECT tier, price_paid, created_at FROM partners WHERE user_id = ?");
+$partnerStmt->bind_param("i", $userId);
+$partnerStmt->execute();
+$partnerResult = $partnerStmt->get_result();
+$partner = $partnerResult->fetch_assoc();
+$partnerStmt->close();
+
 $conn->close();
 
 $activePage = 'account';
+$partnerAction = $_GET['partner'] ?? null; // 'joined' or 'switched'
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -105,12 +119,40 @@ $activePage = 'account';
   <!-- Profile Section -->
   <section class="bg-brand-dark py-20">
     <div class="mx-[130px]">
-      <h1 class="font-eras text-[50px] text-brand-light font-black mb-2">
-        <?php echo htmlspecialchars($_SESSION['username']); ?>
-      </h1>
-      <p class="font-consolas text-[20px] text-brand-light/70">
-        <?php echo htmlspecialchars($userEmail); ?>
-      </p>
+
+      <?php if ($partnerAction && $partner): ?>
+        <p class="font-consolas text-[14px] text-green-400 bg-green-900/30 border border-green-500/40 rounded-lg px-4 py-3 mb-8 inline-block">
+          <?php if ($partnerAction === 'switched'): ?>
+            You've switched to the <?php echo htmlspecialchars($partner['tier']); ?> tier!
+          <?php else: ?>
+            You're now an <?php echo htmlspecialchars($partner['tier']); ?> partner!
+          <?php endif; ?>
+        </p>
+      <?php endif; ?>
+
+      <div class="flex justify-between items-center">
+
+        <!-- Username & Email -->
+        <div>
+          <h1 class="font-eras text-[50px] text-brand-light font-black mb-2">
+            <?php echo htmlspecialchars($_SESSION['username']); ?>
+          </h1>
+          <p class="font-consolas text-[20px] text-brand-light/70">
+            <?php echo htmlspecialchars($userEmail); ?>
+          </p>
+        </div>
+
+        <!-- Partner Tier Badge -->
+        <?php if ($partner): ?>
+          <div class="bg-brand-light/10 border border-brand-light/30 rounded-xl px-8 py-6 text-right">
+            <p class="font-consolas text-[13px] text-brand-light/60 mb-1">Partner Tier</p>
+            <p class="font-eras text-[26px] text-brand-light font-black">
+              <?php echo htmlspecialchars($partner['tier']); ?>
+            </p>
+          </div>
+        <?php endif; ?>
+
+      </div>
     </div>
   </section>
 

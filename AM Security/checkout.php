@@ -18,7 +18,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 $error = "";
 
-// POST the purchase
+// ── Handle the actual purchase (POST) ───────────────────────────────────
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Reject if the CSRF token is missing or doesn't match
@@ -26,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Invalid request. Please go back and try again.");
     }
 
+    // Look up the plan server-side by name -- the price is NEVER trusted
+    // from the form itself, only the plan name, which we then re-verify here.
     $planName = $_POST['plan_name'] ?? '';
     $plan = findPlanByName($planName);
 
@@ -40,6 +42,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($insertStmt->execute()) {
             $orderId = $insertStmt->insert_id;
             $insertStmt->close();
+
+            // Create the matching subscription record. Every plan is
+            // 1 year for now (matches the "*For the first year" copy on
+            // every pricing card) -- swap this to a per-plan billing
+            // cycle later once monthly vs. yearly plans are decided.
+            $expiresAt = date('Y-m-d H:i:s', strtotime('+1 year'));
+
+            $subStmt = $conn->prepare("INSERT INTO subscriptions (user_id, plan_name, plan_section, expires_at) VALUES (?, ?, ?, ?)");
+            $subStmt->bind_param("isss", $userId, $plan['name'], $plan['section'], $expiresAt);
+            $subStmt->execute();
+            $subStmt->close();
+
             $conn->close();
 
             header("Location: receipt.php?order_id=" . $orderId);
@@ -51,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
+// ── Look up the plan for display (GET) ──────────────────────────────────
 $planName = $_GET['plan'] ?? '';
 $plan = findPlanByName($planName);
 
@@ -155,6 +170,10 @@ $conn->close();
           class="font-consolas text-[16px] text-brand-dark border-2 border-brand-dark rounded-full py-3 w-full mt-3 text-center block transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Back
         </a>
+
+        <p class="font-consolas text-[12px] text-brand-dark/50 text-center mt-6">
+          This is a simulated checkout for demonstration purposes -- no real payment is processed.
+        </p>
 
       </div>
 
