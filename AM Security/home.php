@@ -217,8 +217,10 @@ session_start();
         <h3 class="font-consolas text-[30px] text-black text-center leading-snug">
           Download for<br>Windows
         </h3>
+
         
-        <a href="services.php" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
+        
+        <a href="download.php?os=windows" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Download
         </a>
       </div>
@@ -233,7 +235,7 @@ session_start();
           Download for<br>macOS
         </h3>
 
-        <a href="services.php" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
+        <a href="download.php?os=macos" class="font-consolas text-[25px] px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-light">
           Download
         </a>
       </div>

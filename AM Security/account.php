@@ -26,18 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_account'])) {
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         die("Invalid request. Please go back and try again.");
     }
-    // delete order THEN delete account on skibidi
+
+    // orders, subscriptions, and partners all have ON DELETE CASCADE now,
+    // so deleting the user alone cleans up every related row automatically.
     $userId = $_SESSION['user_id'];
-    $deleteOrdersStmt = $conn->prepare("DELETE FROM orders WHERE user_id = ?");
-    $deleteOrdersStmt->bind_param("i", $userId);
-    $deleteOrdersStmt->execute();
-    $deleteOrdersStmt->close();
-
-    $deletePartnerStmt = $conn->prepare("DELETE FROM partners WHERE user_id = ?");
-    $deletePartnerStmt->bind_param("i", $userId);
-    $deletePartnerStmt->execute();
-    $deletePartnerStmt->close();
-
     $deleteStmt = $conn->prepare("DELETE FROM users WHERE id = ?");
     $deleteStmt->bind_param("i", $userId);
     $deleteStmt->execute();
@@ -66,6 +58,14 @@ $ordersStmt->execute();
 $ordersResult = $ordersStmt->get_result();
 $orders = $ordersResult->fetch_all(MYSQLI_ASSOC);
 $ordersStmt->close();
+
+// Fetch subscriptions and license keys
+$subsStmt = $conn->prepare("SELECT plan_name, plan_section, purchased_at, expires_at, license_key FROM subscriptions WHERE user_id = ? ORDER BY expires_at DESC");
+$subsStmt->bind_param("i", $userId);
+$subsStmt->execute();
+$subsResult = $subsStmt->get_result();
+$subscriptions = $subsResult->fetch_all(MYSQLI_ASSOC);
+$subsStmt->close();
 
 // Fetch partnership tier, if any (one-time purchase, so at most one row)
 $partnerStmt = $conn->prepare("SELECT tier, price_paid, created_at FROM partners WHERE user_id = ?");
@@ -153,6 +153,51 @@ $partnerAction = $_GET['partner'] ?? null; // 'joined' or 'switched'
         <?php endif; ?>
 
       </div>
+    </div>
+  </section>
+
+  <!-- My Subscriptions Section -->
+  <section class="bg-brand-mid py-20">
+    <div class="mx-[130px]">
+      <h2 class="font-eras text-[40px] text-brand-dark font-black mb-10">
+        My Subscriptions
+      </h2>
+
+      <?php if (empty($subscriptions)): ?>
+
+        <p class="font-consolas text-[16px] text-brand-dark/70">
+          No active subscriptions. Purchase a plan from Services to get your license key.
+        </p>
+
+      <?php else: ?>
+
+        <div class="grid grid-cols-2 gap-6">
+          <?php foreach ($subscriptions as $sub): ?>
+            <?php $isExpired = strtotime($sub['expires_at']) < time(); ?>
+            <div class="bg-brand-light rounded-xl p-8">
+              <p class="font-consolas text-[12px] text-brand-dark/60 mb-1">
+                <?php echo htmlspecialchars($sub['plan_section']); ?> Plan
+              </p>
+              <h3 class="font-eras text-[24px] text-brand-mid font-black mb-4">
+                <?php echo htmlspecialchars($sub['plan_name']); ?>
+              </h3>
+
+              <p class="font-consolas text-[12px] text-brand-dark/60 mb-1">License Key</p>
+              <p class="font-consolas text-[16px] text-brand-dark font-bold tracking-wide mb-4">
+                <?php echo htmlspecialchars($sub['license_key'] ?? 'N/A'); ?>
+              </p>
+
+              <p class="font-consolas text-[13px] text-brand-dark/70">
+                Expires <?php echo htmlspecialchars($sub['expires_at']); ?>
+                <?php if ($isExpired): ?>
+                  <span class="font-bold text-red-600 ml-2">Expired</span>
+                <?php endif; ?>
+              </p>
+            </div>
+          <?php endforeach; ?>
+        </div>
+
+      <?php endif; ?>
     </div>
   </section>
 

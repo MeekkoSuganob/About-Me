@@ -3,6 +3,13 @@ session_start();
 include 'config.php';
 include 'plans.php';
 
+// Generates a license key like AMSEC-XXXX-XXXX-XXXX-XXXX using random bytes,
+function generateLicenseKey() {
+    $hex = strtoupper(bin2hex(random_bytes(8)));
+    $groups = str_split($hex, 4);
+    return 'AMSEC-' . implode('-', $groups);
+}
+
 $activePage = '';
 
 // Must be logged in to buy anything
@@ -48,9 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // every pricing card) -- swap this to a per-plan billing
             // cycle later once monthly vs. yearly plans are decided.
             $expiresAt = date('Y-m-d H:i:s', strtotime('+1 year'));
+            $licenseKey = generateLicenseKey();
 
-            $subStmt = $conn->prepare("INSERT INTO subscriptions (user_id, plan_name, plan_section, expires_at) VALUES (?, ?, ?, ?)");
-            $subStmt->bind_param("isss", $userId, $plan['name'], $plan['section'], $expiresAt);
+            $subStmt = $conn->prepare("INSERT INTO subscriptions (user_id, plan_name, plan_section, expires_at, license_key) VALUES (?, ?, ?, ?, ?)");
+            $subStmt->bind_param("issss", $userId, $plan['name'], $plan['section'], $expiresAt, $licenseKey);
             $subStmt->execute();
             $subStmt->close();
 
@@ -159,6 +167,18 @@ $conn->close();
         <form action="checkout.php" method="POST">
           <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
           <input type="hidden" name="plan_name" value="<?php echo htmlspecialchars($plan['name']); ?>">
+
+                    <div class="flex flex-col gap-2 mb-6">
+            <label for="payment_method" class="font-consolas text-[14px] text-brand-dark font-bold">Payment Method:</label>
+            <select id="payment_method" name="payment_method" required
+              class="font-consolas text-[16px] text-brand-dark border border-brand-mid/40 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-mid">
+              <option value="" disabled selected>Select a payment method</option>
+              <option value="Credit/Debit Card">Credit/Debit Card</option>
+              <option value="GCash">GCash</option>
+              <option value="Maya">Maya</option>
+              <option value="PayPal">PayPal</option>
+            </select>
+          </div>
 
           <button type="submit"
             class="font-consolas text-[18px] text-brand-light bg-brand-dark rounded-full py-3 w-full transition-colors duration-300 hover:bg-brand-mid">

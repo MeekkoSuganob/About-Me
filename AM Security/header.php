@@ -56,12 +56,12 @@ function truncateUsername($name, $limit = 8) {
       <?php if (!empty($_SESSION['is_admin'])): ?>
         <a href="admin.php" class="<?php echo navLinkClass('admin', $activePage); ?>">Admin</a>
       <?php endif; ?>
-      
+
     </nav>
 
     <!-- Right Actions -->
     <div class="flex items-center gap-6 text-[30px] text-brand-mid">
-      <a href="<?php echo htmlspecialchars($downloadHref); ?>" class="px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-mid">Download</a>
+      <a href="home.php#downloads" class="px-6 py-2 bg-brand-mid text-brand-dark rounded-xl transition-colors duration-300 hover:bg-brand-dark hover:text-brand-mid">Download</a>
     </div>
 
   </div>
