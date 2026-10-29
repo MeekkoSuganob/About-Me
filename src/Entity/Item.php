@@ -6,6 +6,7 @@ use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Item
 {
     #[ORM\Id]
@@ -121,5 +122,12 @@ class Item
         $this->supplier = $supplier;
 
         return $this;
+    }
+    #[ORM\PrePersist]
+    public function generateCode(): void
+    {
+        if (empty($this->code)) {
+            $this->code = 'ITM-' . strtoupper(bin2hex(random_bytes(4)));
+        }
     }
 }
