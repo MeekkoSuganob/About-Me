@@ -8,13 +8,16 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% for message in app.flashes('success') %}
+    <p>{{ message }}</p>
+{% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>D:/StockGuard/src/Controller/DashboardController.php</code></li>
-        <li>Your template at <code>D:/StockGuard/templates/dashboard/index.html.twig</code></li>
-    </ul>
-</div>
+{% if is_granted('ROLE_MANAGER') %}
+    <a href="{{ path('app_register') }}">Create user</a>
+{% endif %}
+
+<a href="{{ path('app_item_index') }}">Items</a>
+{% if is_granted('ROLE_MANAGER') %}
+    <a href="{{ path('app_supplier_index') }}">Suppliers</a>
+{% endif %}
 {% endblock %}

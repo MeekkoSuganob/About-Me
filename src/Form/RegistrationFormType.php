@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -19,14 +20,6 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('fullName')
             ->add('username')
-            ->add('agreeTerms', CheckboxType::class, [
-                                'mapped' => false,
-                'constraints' => [
-                    new IsTrue(
-                        message: 'You should agree to our terms.',
-                    ),
-                ],
-            ])
             ->add('plainPassword', PasswordType::class, [
                                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -44,6 +37,11 @@ class RegistrationFormType extends AbstractType
                     ),
                 ],
             ])
+            ->add('role', ChoiceType::class, [
+                'mapped' => false,
+                'choices' => ['Staff' => 'ROLE_STAFF', 'Manager' => 'ROLE_MANAGER'],
+                'data' => 'ROLE_STAFF',
+])
         ;
     }
 
