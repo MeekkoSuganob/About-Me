@@ -20,4 +20,7 @@
 {% if is_granted('ROLE_MANAGER') %}
     <a href="{{ path('app_supplier_index') }}">Suppliers</a>
 {% endif %}
+
+<a href="{{ path('app_transactions') }}">Transaction history</a>
+
 {% endblock %}

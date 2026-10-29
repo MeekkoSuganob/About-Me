@@ -16,7 +16,6 @@ class ItemType extends AbstractType
         $builder
             ->add('name')
             ->add('category')
-            ->add('quantity')
             ->add('minQuantity')
             ->add('location')
             ->add('supplier', EntityType::class, [

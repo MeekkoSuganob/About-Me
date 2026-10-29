@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock in / out{% endblock %}
+
+{% block body %}
+    <h1>Stock in / out: {{ item.name }}</h1>
+    <p>Current quantity: {{ item.quantity }}</p>
+    {{ form(form) }}
+    <a href="{{ path('app_item_show', {id: item.id}) }}">Back</a>
+{% endblock %}
