@@ -16,6 +16,15 @@ class ItemRepository extends ServiceEntityRepository
         parent::__construct($registry, Item::class);
     }
 
+    /** @return Item[] */
+    public function findLowStock(): array
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.quantity <= i.minQuantity')
+            ->orderBy('i.quantity', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Item[] Returns an array of Item objects
 //     */

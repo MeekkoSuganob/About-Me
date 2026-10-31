@@ -5,6 +5,9 @@
 {% block body %}
     <h1>Stock in / out: {{ item.name }}</h1>
     <p>Current quantity: {{ item.quantity }}</p>
-    {{ form(form) }}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit">Save</button>
+    {{ form_end(form) }}
     <a href="{{ path('app_item_show', {id: item.id}) }}">Back</a>
 {% endblock %}

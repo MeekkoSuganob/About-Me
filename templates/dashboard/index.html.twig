@@ -12,6 +12,27 @@
     <p>{{ message }}</p>
 {% endfor %}
 
+<h2>Low stock</h2>
+{% if lowStock is empty %}
+    <p>All items are above their minimum level.</p>
+{% else %}
+    <table>
+        <thead>
+            <tr><th>Item</th><th>Quantity</th><th>Minimum</th><th></th></tr>
+        </thead>
+        <tbody>
+        {% for item in lowStock %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.minQuantity }}</td>
+                <td><a href="{{ path('app_item_stock', {id: item.id}) }}">Stock in</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
 {% if is_granted('ROLE_MANAGER') %}
     <a href="{{ path('app_register') }}">Create user</a>
 {% endif %}
