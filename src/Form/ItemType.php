@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Item;
 use App\Entity\Supplier;
+use App\Repository\SupplierRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +21,10 @@ class ItemType extends AbstractType
             ->add('location')
             ->add('supplier', EntityType::class, [
                 'class' => Supplier::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
+                'placeholder' => 'bayot ang supplier',
+                'required' => false,
+                'query_builder' => fn (SupplierRepository $r) => $r->createQueryBuilder('s')->orderBy('s.name', 'ASC'),
             ])
         ;
     }

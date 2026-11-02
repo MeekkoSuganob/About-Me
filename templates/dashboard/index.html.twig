@@ -33,15 +33,15 @@
     </table>
 {% endif %}
 
-{% if is_granted('ROLE_MANAGER') %}
+{# {% if is_granted('ROLE_MANAGER') %}
     <a href="{{ path('app_register') }}">Create user</a>
-{% endif %}
+{% endif %} #}
 
-<a href="{{ path('app_item_index') }}">Items</a>
+{# <a href="{{ path('app_item_index') }}">Items</a>
 {% if is_granted('ROLE_MANAGER') %}
     <a href="{{ path('app_supplier_index') }}">Suppliers</a>
-{% endif %}
+{% endif %} #}
 
-<a href="{{ path('app_transactions') }}">Transaction history</a>
+{# <a href="{{ path('app_transactions') }}">Transaction history</a> #}
 
 {% endblock %}
