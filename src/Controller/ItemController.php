@@ -16,10 +16,13 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ItemController extends AbstractController
 {
     #[Route(name: 'app_item_index', methods: ['GET'])]
-    public function index(ItemRepository $itemRepository): Response
+    public function index(Request $request, ItemRepository $itemRepository): Response
     {
+        $q = trim((string) $request->query->get('q', ''));
+
         return $this->render('item/index.html.twig', [
-            'items' => $itemRepository->findAll(),
+            'items' => $itemRepository->search($q),
+            'q' => $q,
         ]);
     }
 

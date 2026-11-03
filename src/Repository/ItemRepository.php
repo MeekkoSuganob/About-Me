@@ -17,6 +17,22 @@ class ItemRepository extends ServiceEntityRepository
     }
 
     /** @return Item[] */
+    public function search(string $term = ''): array
+    {
+        $qb = $this->createQueryBuilder('i')
+            ->leftJoin('i.supplier', 's')
+            ->addSelect('s')
+            ->orderBy('i.name', 'ASC');
+
+        if ($term !== '') {
+            $qb->andWhere('i.name LIKE :t OR i.code LIKE :t OR i.category LIKE :t OR i.location LIKE :t OR s.name LIKE :t')
+            ->setParameter('t', '%' . addcslashes($term, '%_\\') . '%');
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+    
+    /** @return Item[] */
     public function findLowStock(): array
     {
         return $this->createQueryBuilder('i')

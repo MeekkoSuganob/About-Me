@@ -33,15 +33,24 @@
     </table>
 {% endif %}
 
-{# {% if is_granted('ROLE_MANAGER') %}
-    <a href="{{ path('app_register') }}">Create user</a>
-{% endif %} #}
-
-{# <a href="{{ path('app_item_index') }}">Items</a>
 {% if is_granted('ROLE_MANAGER') %}
-    <a href="{{ path('app_supplier_index') }}">Suppliers</a>
-{% endif %} #}
-
-{# <a href="{{ path('app_transactions') }}">Transaction history</a> #}
+    <h2>Staff</h2>
+    <table>
+        <thead>
+            <tr><th>Full name</th><th>Username</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+        {% for u in staff %}
+            <tr>
+                <td>{{ u.fullName }}</td>
+                <td>{{ u.username }}</td>
+                <td>{{ 'ROLE_MANAGER' in u.roles ? 'Manager' : 'Staff' }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="3">No accounts yet.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
 
 {% endblock %}

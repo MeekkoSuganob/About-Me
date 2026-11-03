@@ -4,11 +4,16 @@
 
 {% block body %}
     <h1>Item index</h1>
-
+    <form method="get" action="{{ path('app_item_index') }}">
+        <input type="search" name="q" value="{{ q }}" placeholder="Search name, code, category, location, supplier">
+        <button type="submit">Search</button>
+        {% if q %}
+            <a href="{{ path('app_item_index') }}">Clear</a>
+        {% endif %}
+    </form>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Code</th>
                 <th>Category</th>
@@ -21,7 +26,6 @@
         <tbody>
         {% for item in items %}
             <tr>
-                <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.code }}</td>
                 <td>{{ item.category }}</td>
