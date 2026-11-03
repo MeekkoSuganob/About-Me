@@ -5,7 +5,10 @@
 {% block body %}
     <form method="post">
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="login-error">
+                <img src="/pictures/maxresdefault.jpg" alt="Login failed" width="200" height="200">
+                <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+            </div>
         {% endif %}
 
         {% if app.user %}
